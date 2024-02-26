@@ -276,8 +276,10 @@ require('lazy').setup({
 -- Set highlight on search
 vim.o.hlsearch = false
 
--- Make line numbers default
+-- Make line numbers default and netrw
 vim.wo.number = true
+vim.wo.relativenumber = true
+vim.cmd("let g:netrw_bufsettings = 'noma nomod nu nowrap ro nobl'")
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
@@ -656,6 +658,11 @@ cmp.setup {
     { name = 'path' },
   },
 }
+
+--My remaps
+vim.keymap.set('n', '<leader>-', '<cmd>:Ex<cr>', {desc = "Explore [-] up directory"})
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", {desc = "Move selection down [J]"})
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", {desc = "Move selection up [K]"})
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
